@@ -3,4 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
+	<dependency>
+    <groupId>javax.swing</groupId>
+    <artifactId>swing</artifactId>
+    <version>1.0</version>
+	</dependency>
 </classpath>
