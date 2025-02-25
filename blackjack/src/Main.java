@@ -16,7 +16,7 @@ public class Main {
         // Adding Label and Setting
         // the Size of the Frame
         frame.add(label);
-        frame.setSize(300, 300);
+        frame.setSize(1200, 700);
 
         // Making the Frame visible
         frame.setVisible(true);
