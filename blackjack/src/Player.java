@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
 
 public abstract class Player {
     ArrayList<Card> hand;
@@ -12,7 +11,7 @@ public abstract class Player {
     int bet;
 
     public Player() {
-        hand = new ArrayList<Card>();
+        hand = new ArrayList<>();
         handValue = 0;
         aceCount = 0;
         balance = 1000;
@@ -27,38 +26,24 @@ public abstract class Player {
         handValue += Card.getCardValue(card);
     }
 
-    public void placeBet(){
-        String input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
-                                                   "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
+    public abstract void placeBet();
 
-        if (input != null) {
-            try {
-                int betamount = Integer.parseInt(input);
-                if (betamount > balance) {
-                    JOptionPane.showMessageDialog(null, "Insufficient funds! Please enter a valid bet.", 
-                                                  "Error", JOptionPane.ERROR_MESSAGE);
-                    getBets();
-                } else if (betamount <= 0) {
-                    JOptionPane.showMessageDialog(null, "Invalid bet amount! Please enter a positive number.", 
-                                                  "Error", JOptionPane.ERROR_MESSAGE);
-                    getBets();
-                } else {
-                    bet = betamount;
-                    JOptionPane.showMessageDialog(null, "You placed a bet of $" + bet, 
-                                              "Bet Confirmed", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Invalid input! Please enter a number.", 
-                                              "Error", JOptionPane.ERROR_MESSAGE);
-                getBets();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid input! Please enter a number.", 
-                                              "Error", JOptionPane.ERROR_MESSAGE);
-            getBets();
-        }
+    public int getBet() {
+        return bet;
+    }
+
+    public void winBet() {
+        balance += bet;
+        System.out.println("Player " + playerID + " wins " + bet);
+    }
+    public void loseBet() {
         balance -= bet;
-        System.out.println("Player balance: " + balance);
+        System.out.println("Player " + playerID + " loses " + bet);
+    }
+
+    public void blackjack() {
+        balance += bet * 1.5;
+        System.out.println("Player " + playerID + " wins blackjack " + bet * 1.5);
     }
 
 }

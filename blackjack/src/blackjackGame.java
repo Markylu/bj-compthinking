@@ -1,6 +1,7 @@
 
 public class blackjackGame {
     Player[] players;
+    int pot;
 
     public blackjackGame() {
 
@@ -12,6 +13,7 @@ public class blackjackGame {
         players = new Player[2];
         players[0] = new Dealer();
         players[1] = new User();
+        pot = 0;
     }
     
     public void getBets() {
@@ -25,6 +27,13 @@ public class blackjackGame {
             player.drawCard();
             player.drawCard();
         }
+    }
+
+    public int getPot(){
+        for (Player player : players) {
+            pot += player.bet;
+        }
+        return pot;
     }
 
 }
