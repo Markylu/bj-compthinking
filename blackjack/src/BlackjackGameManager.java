@@ -11,14 +11,13 @@ public class BlackjackGameManager {
         App.window.pack();
         App.window.setLocationRelativeTo(null);
         App.window.setVisible(true); 
-        Player[] players = new Player[2];
-        players[0] = new Dealer();
-        players[1] = new User();
+        blackjackGame game = new blackjackGame();
+        game.initializeGame();
+        game.getBets();
         Deck.newDeck();
         Deck.shuffle();
-        for (Player player : players) {
-            player.getBets();
-        }
+
+
         System.out.println("Game started");
     }
 

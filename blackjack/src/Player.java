@@ -27,7 +27,7 @@ public abstract class Player {
         handValue += Card.getCardValue(card);
     }
 
-    public void getBets(){
+    public void placeBet(){
         String input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
                                                    "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
 
