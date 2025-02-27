@@ -13,7 +13,6 @@ public abstract class Player {
     public Player() {
         hand = new ArrayList<>();
         handValue = 0;
-        aceCount = 0;
         balance = 1000;
     }
 
@@ -23,10 +22,32 @@ public abstract class Player {
         if (card.value.equals("A")) {
             aceCount++;
         }
-        handValue += Card.getCardValue(card);
+        calculateHandValue();
     }
 
+    public void calculateHandValue() {
+        handValue = 0;
+        for (Card card : hand) {
+            if (Card.getCardValue(card) == 1  && handValue + 11 <= 21) {
+                handValue += 11;
+            } else {
+                handValue += Card.getCardValue(card);
+            }
+        }
+    }
+
+
     public abstract void placeBet();
+
+    public abstract void makeDecision();
+
+    public void hit() {
+        drawCard();
+    }
+    public void stand() {
+        // do nothing
+    }
+ 
 
     public int getBet() {
         return bet;
@@ -44,6 +65,7 @@ public abstract class Player {
     public void blackjack() {
         balance += bet * 1.5;
         System.out.println("Player " + playerID + " wins blackjack " + bet * 1.5);
+        bet = 0;
     }
 
 }

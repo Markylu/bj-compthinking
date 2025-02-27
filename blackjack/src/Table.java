@@ -30,17 +30,10 @@ public class Table extends JPanel {
         super.paintComponent(g);
         drawBet(g);
         drawCards(g);
-
-        // try{
-        //     Image img = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
-        //     g.drawImage(img, 1024, 600, cardwidth, cardheight, null);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
     }
     private void drawBet(Graphics g) {
         // set the text to be displayed
-        String text = "Your Bet Amount: $" + user.bet + "       Pot: $" + game.getPot();  
+        String text ="Your Balance: $" + user.balance + "Your Bet Amount: $" + user.bet + "       Pot: $" + game.getPot() + "        Hand Value: " + user.handValue;  
         // we need to cast the Graphics to Graphics2D to draw nicer text
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(

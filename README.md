@@ -43,7 +43,7 @@ nd%20the%20wager%20is%20lost.
 
 - The game will have a basic graphical interface and the player
     will interact using their keyboard(ex. p to pause, e to exit, 1
-    for hit, 2 for hold)
+    for hit, 2 for stand)
 
 ## Challenges & Feasibility
 

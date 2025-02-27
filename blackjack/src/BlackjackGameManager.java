@@ -19,6 +19,8 @@ public class BlackjackGameManager {
         Deck.shuffle();
         game.dealCards();
         table.repaint();
+        game.hitOrStand();
+        table.repaint();
 
 
         System.out.println("Game started");

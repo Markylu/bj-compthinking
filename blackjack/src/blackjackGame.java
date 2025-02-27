@@ -36,4 +36,12 @@ public class blackjackGame {
         return pot;
     }
 
+    public void hitOrStand() {
+        for (Player player : players) {
+            if (!(player instanceof Dealer)) {
+                player.makeDecision();
+            }
+        }
+    }
+
 }

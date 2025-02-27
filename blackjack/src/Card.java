@@ -24,7 +24,7 @@ public class Card {
 
     public static int getCardValue(Card card) {
         return switch (card.value) {
-            case "A" -> 11;
+            case "A" -> 1;
             case "J", "Q", "K" -> 10;
             default -> Integer.parseInt(card.value);
         };
