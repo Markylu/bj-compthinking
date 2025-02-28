@@ -13,27 +13,32 @@ public class Table extends JPanel {
     blackjackGame game;
     Player[] players;
     User user;
-    Dealer dealer;
+    // Dealer dealer;
 
     public Table(blackjackGame game) {
         this.game = game;
         this.players = game.players;
-        this.dealer = (Dealer) players[0];
+        // this.dealer = (Dealer) players[0];
         this.user = (User) players[1];
         setPreferredSize(new Dimension(tableWidth, tableHeight));
         setBackground(new Color(0, 128, 0));
         setLayout(null);
     }
+
+    public void updateTable() {
+        // update the table
+        repaint();
+    }
     
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawBet(g);
         drawCards(g);
+        drawBet(g);
     }
     private void drawBet(Graphics g) {
         // set the text to be displayed
-        String text ="Your Balance: $" + user.balance + "Your Bet Amount: $" + user.bet + "       Pot: $" + game.getPot() + "        Hand Value: " + user.handValue;  
+        String text ="Your Balance: $" + user.balance + "        Your Bet Amount: $" + user.bet + "       Pot: $" + game.getPot() + "        Hand Value: " + user.handValue;  
         // we need to cast the Graphics to Graphics2D to draw nicer text
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(
@@ -83,14 +88,14 @@ public class Table extends JPanel {
                         Image img = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
                         g.drawImage(img, x, y, cardwidth, cardheight, null);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.err.println("Error loading card image: " + e.getMessage());
                     }
                 } else {
                     try{
                         Image img = new ImageIcon(getClass().getResource(card.getCard())).getImage();
                         g.drawImage(img, x, y, cardwidth, cardheight, null);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.err.println("Error loading card image: " + e.getMessage());
                     }
                 }
                 x += cardwidth;

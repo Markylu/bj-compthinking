@@ -11,6 +11,30 @@ public class Dealer extends Player {
         // dealer does not place bets
         System.out.println("Dealer does not place bets");
     }
+    
+    @Override
+    public void makeDecision() {
+        hiddenCard.isHidden = false;
+        do {
+            hit();
+            calculateHandValue();
+            table.repaint();
+        } while (handValue < 17);
+        if (handValue > 21) {
+            bust();
+        } else {
+            stand();
+        }
+        calculateHandValue();
+        if (handValue < 17) {
+            hit();
+        } else if (handValue >= 17 && handValue <= 21) {
+            stand();
+        } else {
+            bust();
+        }
+        
+    }
 
     @Override
     public void drawCard() {
@@ -32,7 +56,7 @@ public class Dealer extends Player {
 
     public void revealHiddenCard() {
         if (hiddenCard != null) {
-            hiddenCard.isHidden = false;
+            hiddenCard.isHidden = true;
             hand.add(hiddenCard);
             handValue += Card.getCardValue(hiddenCard);
             if (hiddenCard.value.equals("A")) {

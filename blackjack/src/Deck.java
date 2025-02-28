@@ -42,7 +42,6 @@ public class Deck {
         deck.remove(0);
         System.out.println("Drew card: " + card + "\n" + "Deck size: " + deck.size());
         return card;
-    }
-    
+    }   
 
 }

@@ -1,10 +1,12 @@
 import javax.swing.JOptionPane;
 
 public class User extends Player{
+    
     public User() {
         super();
         playerID = 1;
     }
+
 
     @Override
     public void makeDecision() {
@@ -15,6 +17,7 @@ public class User extends Player{
                                                         "Make a Decision", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
             if (choice == 0) {
                 hit();
+                table.repaint();
                 if (handValue > 21) {
                     JOptionPane.showMessageDialog(null, "You busted! Your hand value is: " + handValue, 
                                                     "Busted", JOptionPane.INFORMATION_MESSAGE);
@@ -26,6 +29,7 @@ public class User extends Player{
                 }
             } else if (choice == 1) {
                 stand();
+                table.repaint();
             }            
         } while (choice == 0 && handValue < 21);
 
@@ -36,31 +40,39 @@ public class User extends Player{
     String input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
                                                 "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
 
-    if (input != null) {
-        try {
-            int betamount = Integer.parseInt(input);
-            if (betamount > balance) {
-                JOptionPane.showMessageDialog(null, "Insufficient funds! Please enter a valid bet.", 
+    boolean validBet = false;
+    while (!validBet) {
+        if (input != null) {
+            try {
+                int betamount = Integer.parseInt(input);
+                if (betamount > balance) {
+                    JOptionPane.showMessageDialog(null, "Insufficient funds! Please enter a valid bet.", 
+                                                    "Error", JOptionPane.ERROR_MESSAGE);
+                    input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
+                                                        "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
+                } else if (betamount < 0) {
+                    JOptionPane.showMessageDialog(null, "Invalid bet amount! Please enter a positive number.", 
+                                                    "Error", JOptionPane.ERROR_MESSAGE);
+                    input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
+                                                        "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
+                } else {
+                    bet = betamount;
+                    JOptionPane.showMessageDialog(null, "You placed a bet of $" + bet, 
+                                                "Bet Confirmed", JOptionPane.INFORMATION_MESSAGE);
+                    validBet = true;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input! Please enter a number.", 
                                                 "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else if (betamount < 0) {
-                JOptionPane.showMessageDialog(null, "Invalid bet amount! Please enter a positive number.", 
-                                                "Error", JOptionPane.ERROR_MESSAGE);
-                placeBet();
-            } else {
-                bet = betamount;
-                JOptionPane.showMessageDialog(null, "You placed a bet of $" + bet, 
-                                            "Bet Confirmed", JOptionPane.INFORMATION_MESSAGE);
+                input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
+                                                    "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
             }
-        } catch (NumberFormatException e) {
+        } else {
             JOptionPane.showMessageDialog(null, "Invalid input! Please enter a number.", 
-                                            "Error", JOptionPane.ERROR_MESSAGE);
-            placeBet();
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+            input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
+                                                "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Invalid input! Please enter a number.", 
-                                            "Error", JOptionPane.ERROR_MESSAGE);
-        placeBet();
     }
 }
 
