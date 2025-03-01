@@ -1,27 +1,29 @@
 import java.util.Random;
-public class Fiftyfiftybot extends Player {
+public class FiftyFiftyBot extends Player {
     Random random = new Random();
 
-    public Fiftyfiftybot(){
+    public FiftyFiftyBot(){
         super();
         playerID = 2;
     }
 
     @Override
     public void placeBet(){
-        int betamount = random.nextInt(0,100);
+        bet = random.nextInt(0,balance);
     }
 
     @Override
     public void makeDecision(){
         calculateHandValue();
         if (handValue<21){
-        int randomNumberInRange = random.nextInt(0, 1);
+        int randomNumberInRange = random.nextInt(0, 2);
         if(randomNumberInRange == 0){
-            hit();
+            // hit();
+            System.out.println("FiftyFiftyBot hits");
         }
         else{
-            stand();
+            // stand();
+            System.out.println("FiftyFiftyBot stands");
         }
 }
     }

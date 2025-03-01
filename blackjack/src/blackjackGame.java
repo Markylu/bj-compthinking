@@ -14,7 +14,7 @@ public class blackjackGame {
         players = new Player[3];
         players[0] = new Dealer();
         players[1] = new User();
-        players[2] = new Fiftyfiftybot();
+        players[2] = new FiftyFiftyBot();
         pot = 0;
     }
 

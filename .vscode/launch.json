@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BotTester",
+            "request": "launch",
+            "mainClass": "BotTester",
+            "projectName": "blackjack"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
