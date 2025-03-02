@@ -1,10 +1,10 @@
 import javax.swing.JOptionPane;
 
 public class User extends Player{
-    String name = "User";
     
     public User() {
         super();
+        this.name = "User";
         playerID = 1;
     }
 

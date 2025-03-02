@@ -10,7 +10,7 @@ public class blackjackGame {
     public void initializeGame() {
         // initialize game
         System.out.println("Initializing game");
-        players = new Player[4];
+        players = new Player[5];
         players[0] = new Dealer();
         players[1] = new User();
         players[2] = new FiftyFiftyBot();

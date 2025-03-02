@@ -2,10 +2,10 @@ import java.util.Random;
 
 public class HardBot extends Player{
     Random random = new Random();
-    String name = "HardBot";
 
     public HardBot(){
         super();
+        this.name = "HardBot";
         playerID = 4;
     }
 

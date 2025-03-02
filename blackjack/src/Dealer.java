@@ -3,6 +3,7 @@ public class Dealer extends Player {
     Card hiddenCard;
     public Dealer() {
         super();
+        this.name = "Dealer";
         playerID = 0;
     }
 
@@ -43,7 +44,9 @@ public class Dealer extends Player {
             hiddenCard = Deck.draw();
             hiddenCard.isHidden = true;
             hand.add(hiddenCard);
+            if (Deck.cardsInPlay!=null) {
             Deck.cardsInPlay.remove(hiddenCard);
+        }
         } else {
             Card card = Deck.draw();
             hand.add(card);

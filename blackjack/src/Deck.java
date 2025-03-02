@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Deck {
     public static ArrayList<Card> deck;
-    public static ArrayList<Card> cardsInPlay;// Does not incluce hidden Cards
+    public static ArrayList<Card> cardsInPlay = new ArrayList<>();// Does not incluce hidden Cards
 
     public Deck() {
 

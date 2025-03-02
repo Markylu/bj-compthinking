@@ -38,7 +38,7 @@ public class Table extends JPanel {
     }
     private void drawBet(Graphics g) {
         // set the text to be displayed
-        String text ="Your Balance: $" + user.balance + "        Your Bet Amount: $" + user.bet + "       Pot: $" + game.getPot() + "        Hand Value: " + user.handValue;  
+        String text ="Your Balance: $" + user.balance + "        Your Bet Amount: $" + user.bet + "        Hand Value: " + user.handValue;  
         // we need to cast the Graphics to Graphics2D to draw nicer text
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(
