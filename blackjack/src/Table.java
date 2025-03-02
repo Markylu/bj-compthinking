@@ -1,24 +1,24 @@
+
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-
 public class Table extends JPanel {
+
     int cardheight = 154;
     int cardwidth = 110;
-    int tableWidth = cardwidth*10;
-    int tableHeight = cardheight*5+81;
+    int tableWidth = cardwidth * 10;
+    int tableHeight = cardheight * 5 + 81;
 
-    
     blackjackGame game;
     Player[] players;
     User user;
-    Dealer dealer;
+    // Dealer dealer;
 
     public Table(blackjackGame game) {
         this.game = game;
         this.players = this.game.players;
-        this.dealer = (Dealer) players[0];
+        // this.dealer = (Dealer) players[0];
         this.user = (User) players[1];
         setPreferredSize(new Dimension(tableWidth, tableHeight));
         setBackground(new Color(0, 128, 0));
@@ -29,28 +29,30 @@ public class Table extends JPanel {
         // update the table
         repaint();
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawCards(g);
         drawBet(g);
         drawplayerNames(g);
+        drawHandValue(g);
     }
+
     private void drawBet(Graphics g) {
         // set the text to be displayed
-        String text ="Your Balance: $" + user.balance + "        Your Bet Amount: $" + user.bet + "        Hand Value: " + user.handValue;  
+        String text = "Your Balance: $" + user.balance + "        Your Bet Amount: $" + user.bet + "        Hand Value: " + user.handValue;
         // we need to cast the Graphics to Graphics2D to draw nicer text
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(
-            RenderingHints.KEY_TEXT_ANTIALIASING,
-            RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2d.setRenderingHint(
-            RenderingHints.KEY_RENDERING,
-            RenderingHints.VALUE_RENDER_QUALITY);
+                RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(
-            RenderingHints.KEY_FRACTIONALMETRICS,
-            RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+                RenderingHints.KEY_FRACTIONALMETRICS,
+                RenderingHints.VALUE_FRACTIONALMETRICS_ON);
         // set the text color and font
         g2d.setColor(new Color(30, 201, 139));
         g2d.setFont(new Font("Lato", Font.BOLD, 25));
@@ -83,22 +85,22 @@ public class Table extends JPanel {
                 case 1 -> {
                     // user
                     x = 200;
-                    y = 30 + cardheight*4;
+                    y = 30 + cardheight * 4;
                 }
                 case 2 -> {
                     // fiftyfiftybot
                     x = 200;
-                    y = 30+cardheight;
+                    y = 30 + cardheight;
                 }
                 case 3 -> {
                     // normalbot
                     x = 200;
-                    y = 30 + cardheight*2;
+                    y = 30 + cardheight * 2;
                 }
                 case 4 -> {
                     // hardbot
                     x = 200;
-                    y = 30 + cardheight*3;
+                    y = 30 + cardheight * 3;
                 }
                 default -> {
                     // no player
@@ -107,14 +109,14 @@ public class Table extends JPanel {
             }
             for (Card card : player.hand) {
                 if (card.isHidden) {
-                    try{
+                    try {
                         Image img = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
                         g.drawImage(img, x, y + 31, cardwidth, cardheight, null);
                     } catch (Exception e) {
                         System.err.println("Error loading card image: " + e.getMessage());
                     }
                 } else {
-                    try{
+                    try {
                         Image img = new ImageIcon(getClass().getResource(card.getCard())).getImage();
                         g.drawImage(img, x, y + 31, cardwidth, cardheight, null);
                     } catch (Exception e) {
@@ -140,7 +142,7 @@ public class Table extends JPanel {
                 case 1 -> {
                     // user
                     x = 20;
-                    y = 40 + cardheight*4;
+                    y = 40 + cardheight * 4;
                 }
                 case 2 -> {
                     // fiftyfiftybot
@@ -150,19 +152,59 @@ public class Table extends JPanel {
                 case 3 -> {
                     // normalbot
                     x = 20;
-                    y = 40 + cardheight*2;
+                    y = 40 + cardheight * 2;
                 }
                 case 4 -> {
                     // hardbot
                     x = 20;
-                    y = 40 + cardheight*3;
+                    y = 40 + cardheight * 3;
                 }
                 default -> {
                     // no player
                     continue;
                 }
             }
-            g.drawString(player.name, x, y+51);
+            g.drawString(player.name, x, y + 51);
+        }
+    }
+
+    public void drawHandValue(Graphics g) {
+        // draw the hand value
+        for (Player player : players) {
+            int x;
+            int y;
+            switch (player.playerID) {
+                case 0 -> {
+                    // dealer
+                    x = 20;
+                    y = 30;
+                }
+                case 1 -> {
+                    // user
+                    x = 20;
+                    y = 40 + cardheight * 4;
+                }
+                case 2 -> {
+                    // fiftyfiftybot
+                    x = 20;
+                    y = 40 + cardheight;
+                }
+                case 3 -> {
+                    // normalbot
+                    x = 20;
+                    y = 40 + cardheight * 2;
+                }
+                case 4 -> {
+                    // hardbot
+                    x = 20;
+                    y = 40 + cardheight * 3;
+                }
+                default -> {
+                    // no player
+                    continue;
+                }
+            }
+            g.drawString("Hand Value: " + player.handValue, x, y + 71);
         }
     }
 }

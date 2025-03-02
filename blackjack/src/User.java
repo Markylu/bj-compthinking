@@ -18,15 +18,17 @@ public class User extends Player{
                                                         "Make a Decision", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
             if (choice == 0) {
                 hit();
+                calculateHandValue();
                 table.repaint();
                 if (handValue > 21) {
                     JOptionPane.showMessageDialog(null, "You busted! Your hand value is: " + handValue, 
                                                     "Busted", JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 }
                 if (handValue == 21) {
                     JOptionPane.showMessageDialog(null, "Blackjack! Your hand value is: " + handValue, 
                                                     "Blackjack", JOptionPane.INFORMATION_MESSAGE);
-                    blackjack();
+                    break;
                 }
             } else if (choice == 1) {
                 stand();
