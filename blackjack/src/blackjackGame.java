@@ -38,13 +38,6 @@ public class blackjackGame {
         }
     }
 
-    public int getPot(){
-        for (Player player : players) {
-            pot += player.bet;
-        }
-        return pot;
-    }
-
     public void hitOrStand() {
         for (Player player : players) {
             if (!(player instanceof Dealer)) {
