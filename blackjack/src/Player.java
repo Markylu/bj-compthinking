@@ -10,6 +10,7 @@ public abstract class Player {
     int balance;
     int bet;
     Table table;
+    String name;
 
     public Player() {
         hand = new ArrayList<>();
@@ -23,6 +24,7 @@ public abstract class Player {
         if (card.value.equals("A")) {
             aceCount++;
         }
+        Deck.cardsInPlay.add(card);
         calculateHandValue();
     }
 
@@ -49,40 +51,40 @@ public abstract class Player {
     public void hit() {
         drawCard();
         table.repaint();
-        System.out.println("Player " + playerID + " hits");
+        System.out.println("Player " + name + " hits");
     }
     public void stand() {
-        System.out.println("Player " + playerID + " stands");
+        System.out.println("Player " + name + " stands");
     }
  
 
     public int getBet() {
-        System.out.println("Player " + playerID + " bets " + bet);
+        System.out.println("Player " + name + " bets " + bet);
         return bet;
     }
 
     public void winBet() {
         balance += bet;
-        System.out.println("Player " + playerID + " wins " + bet);
+        System.out.println("Player " + name + " wins " + bet);
     }
     public void loseBet() {
         balance -= bet;
-        System.out.println("Player " + playerID + " loses " + bet);
+        System.out.println("Player " + name + " loses " + bet);
     }
 
     public void blackjack() {
         balance += bet * 1.5;
-        System.out.println("Player " + playerID + " wins blackjack " + bet * 1.5);
+        System.out.println("Player " + name + " wins blackjack " + bet * 1.5);
         bet = 0;
     }
     public void bust() {
-        System.out.println("Player " + playerID + " busts");
+        System.out.println("Player " + name + " busts");
         loseBet();
         bet = 0;
     }
 
     public void push() {
-        System.out.println("Player " + playerID + " pushes");
+        System.out.println("Player " + name + " pushes");
         bet = 0;
     }
 

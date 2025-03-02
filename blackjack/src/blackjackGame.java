@@ -1,7 +1,6 @@
 
 public class blackjackGame {
     Player[] players;
-    int pot;
 
     public blackjackGame() {
         
@@ -11,11 +10,12 @@ public class blackjackGame {
     public void initializeGame() {
         // initialize game
         System.out.println("Initializing game");
-        players = new Player[3];
+        players = new Player[4];
         players[0] = new Dealer();
         players[1] = new User();
         players[2] = new FiftyFiftyBot();
-        pot = 0;
+        players[3] = new NormalBot();
+        players[4] = new HardBot();
     }
 
     public void tableToPlayers(Table table) {
@@ -27,7 +27,7 @@ public class blackjackGame {
     public void getBets() {
         for (Player player : players) {
             player.placeBet();
-            System.out.println("Player " + player.playerID + " bet: " + player.bet);
+            System.out.println("Player " + player.name + " bet: " + player.bet);
         }
     }
 

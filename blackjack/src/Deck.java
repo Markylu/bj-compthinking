@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Deck {
     public static ArrayList<Card> deck;
+    public static ArrayList<Card> cardsInPlay;// Does not incluce hidden Cards
 
     public Deck() {
 
@@ -42,6 +43,18 @@ public class Deck {
         deck.remove(0);
         System.out.println("Drew card: " + card + "\n" + "Deck size: " + deck.size());
         return card;
-    }   
+    }  
+    
+    public static int calculateDeckValue(ArrayList<Card> deck) {
+        int deckValue = 0;
+        for (Card card : deck) {
+            if (card.suit.equals("A") && deckValue + 11 <= 21) {
+                deckValue += 11;
+            } else {
+                deckValue += Card.getCardValue(card);
+            }
+        }
+        return deckValue;
+    }
 
 }

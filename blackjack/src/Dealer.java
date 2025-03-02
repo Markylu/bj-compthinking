@@ -43,6 +43,7 @@ public class Dealer extends Player {
             hiddenCard = Deck.draw();
             hiddenCard.isHidden = true;
             hand.add(hiddenCard);
+            Deck.cardsInPlay.remove(hiddenCard);
         } else {
             Card card = Deck.draw();
             hand.add(card);
