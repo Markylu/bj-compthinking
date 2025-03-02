@@ -1,6 +1,7 @@
 import java.util.Random;
 public class FiftyFiftyBot extends Player {
     Random random = new Random();
+    String name = "FiftyFiftyBot";
 
     public FiftyFiftyBot(){
         super();
@@ -18,12 +19,10 @@ public class FiftyFiftyBot extends Player {
         if (handValue<21){
         int randomNumberInRange = random.nextInt(0, 2);
         if(randomNumberInRange == 0){
-            // hit();
-            System.out.println("FiftyFiftyBot hits");
+            hit();
         }
         else{
-            // stand();
-            System.out.println("FiftyFiftyBot stands");
+            stand();
         }
 }
     }

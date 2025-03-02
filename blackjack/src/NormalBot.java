@@ -2,31 +2,28 @@ import java.util.Random;
 
 public class NormalBot extends Player{
     Random random = new Random();
+    String name = "NormalBot";
 
     public NormalBot(){
         super();
-        playerID = 4;
+        playerID = 2;
     }
 
     @Override
     public void placeBet(){
-        bet = random.nextInt(0,balance);
+        bet = random.nextInt(balance);
     }
 
     @Override
     public void makeDecision(){
         calculateHandValue();
-        if (handValue<21){
-        int randomNumberInRange = random.nextInt(0, 2);
-        if(randomNumberInRange == 0){
-            // hit();
-            System.out.println("NormalBot hits");
+        if (handValue < 21){
+            int randomNumberInRange = random.nextInt(2);
+            if(randomNumberInRange == 0){
+                hit();
+            } else {
+                stand();
+            }
         }
-        else{
-            // stand();
-            System.out.println("NormalBot stands");
-        }
-}
     }
-
 }
