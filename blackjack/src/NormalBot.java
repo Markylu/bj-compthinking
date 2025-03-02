@@ -1,8 +1,4 @@
-import java.util.Random;
-
 public class NormalBot extends Player{
-    Random random = new Random();
-
     public NormalBot(){
         super();
         playerID = 4;
@@ -10,15 +6,18 @@ public class NormalBot extends Player{
 
     @Override
     public void placeBet(){
-        bet = random.nextInt(0,balance);
+        if (balance < 50){
+            bet = balance;
+        }
+        else{
+        bet = 2*balance/10;
+    }
     }
 
     @Override
     public void makeDecision(){
         calculateHandValue();
-        if (handValue<21){
-        int randomNumberInRange = random.nextInt(0, 2);
-        if(randomNumberInRange == 0){
+        if (handValue<15){
             // hit();
             System.out.println("NormalBot hits");
         }
@@ -27,6 +26,6 @@ public class NormalBot extends Player{
             System.out.println("NormalBot stands");
         }
 }
-    }
-
 }
+
+
