@@ -6,7 +6,7 @@ public class NormalBot extends Player{
     public NormalBot(){
         super();
         this.name = "NormalBot";
-        playerID = 2;
+        playerID = 3;
     }
 
     @Override

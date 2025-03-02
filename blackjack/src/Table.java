@@ -13,12 +13,12 @@ public class Table extends JPanel {
     blackjackGame game;
     Player[] players;
     User user;
-    // Dealer dealer;
+    Dealer dealer;
 
     public Table(blackjackGame game) {
         this.game = game;
-        this.players = game.players;
-        // this.dealer = (Dealer) players[0];
+        this.players = this.game.players;
+        this.dealer = (Dealer) players[0];
         this.user = (User) players[1];
         setPreferredSize(new Dimension(tableWidth, tableHeight));
         setBackground(new Color(0, 128, 0));
@@ -35,6 +35,7 @@ public class Table extends JPanel {
         super.paintComponent(g);
         drawCards(g);
         drawBet(g);
+        drawplayerNames(g);
     }
     private void drawBet(Graphics g) {
         // set the text to be displayed
@@ -76,27 +77,27 @@ public class Table extends JPanel {
             switch (player.playerID) {
                 case 0 -> {
                     // dealer
-                    x = 20;
+                    x = 200;
                     y = 20;
                 }
                 case 1 -> {
                     // user
-                    x = 20;
+                    x = 200;
                     y = 30 + cardheight*4;
                 }
                 case 2 -> {
                     // fiftyfiftybot
-                    x = 20;
+                    x = 200;
                     y = 30+cardheight;
                 }
                 case 3 -> {
                     // normalbot
-                    x = 20;
+                    x = 200;
                     y = 30 + cardheight*2;
                 }
                 case 4 -> {
                     // hardbot
-                    x = 20;
+                    x = 200;
                     y = 30 + cardheight*3;
                 }
                 default -> {
@@ -122,6 +123,46 @@ public class Table extends JPanel {
                 }
                 x += cardwidth;
             }
+        }
+    }
+
+    public void drawplayerNames(Graphics g) {
+        // draw the player names
+        for (Player player : players) {
+            int x;
+            int y;
+            switch (player.playerID) {
+                case 0 -> {
+                    // dealer
+                    x = 20;
+                    y = 30;
+                }
+                case 1 -> {
+                    // user
+                    x = 20;
+                    y = 40 + cardheight*4;
+                }
+                case 2 -> {
+                    // fiftyfiftybot
+                    x = 20;
+                    y = 40 + cardheight;
+                }
+                case 3 -> {
+                    // normalbot
+                    x = 20;
+                    y = 40 + cardheight*2;
+                }
+                case 4 -> {
+                    // hardbot
+                    x = 20;
+                    y = 40 + cardheight*3;
+                }
+                default -> {
+                    // no player
+                    continue;
+                }
+            }
+            g.drawString(player.name, x, y+51);
         }
     }
 }
