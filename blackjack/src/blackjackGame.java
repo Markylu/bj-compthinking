@@ -11,11 +11,10 @@ public class blackjackGame {
     public void initializeGame() {
         // initialize game
         System.out.println("Initializing game");
-        players = new Player[4];
+        players = new Player[3];
         players[0] = new Dealer();
         players[1] = new User();
         players[2] = new FiftyFiftyBot();
-        players[3] = new NormalBot();
         pot = 0;
     }
 
@@ -28,6 +27,7 @@ public class blackjackGame {
     public void getBets() {
         for (Player player : players) {
             player.placeBet();
+            System.out.println("Player " + player.playerID + " bet: " + player.bet);
         }
     }
 

@@ -7,7 +7,7 @@ public class Table extends JPanel {
     int cardheight = 154;
     int cardwidth = 110;
     int tableWidth = cardwidth*10;
-    int tableHeight = cardheight*5;
+    int tableHeight = cardheight*5+81;
 
     
     blackjackGame game;
@@ -73,27 +73,49 @@ public class Table extends JPanel {
         for (Player player : players) {
             int x;
             int y;
-            if (player.playerID == 0) {
-                // dealer
-                x = 20;
-                y = 20;
-            } else {
-                // user
-                x = 20;
-                y = cardheight*3;
+            switch (player.playerID) {
+                case 0 -> {
+                    // dealer
+                    x = 20;
+                    y = 20;
+                }
+                case 1 -> {
+                    // user
+                    x = 20;
+                    y = 30 + cardheight*4;
+                }
+                case 2 -> {
+                    // fiftyfiftybot
+                    x = 20;
+                    y = 30+cardheight;
+                }
+                case 3 -> {
+                    // normalbot
+                    x = 20;
+                    y = 30 + cardheight*2;
+                }
+                case 4 -> {
+                    // hardbot
+                    x = 20;
+                    y = 30 + cardheight*3;
+                }
+                default -> {
+                    // no player
+                    continue;
+                }
             }
             for (Card card : player.hand) {
                 if (card.isHidden) {
                     try{
                         Image img = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
-                        g.drawImage(img, x, y, cardwidth, cardheight, null);
+                        g.drawImage(img, x, y + 31, cardwidth, cardheight, null);
                     } catch (Exception e) {
                         System.err.println("Error loading card image: " + e.getMessage());
                     }
                 } else {
                     try{
                         Image img = new ImageIcon(getClass().getResource(card.getCard())).getImage();
-                        g.drawImage(img, x, y, cardwidth, cardheight, null);
+                        g.drawImage(img, x, y + 31, cardwidth, cardheight, null);
                     } catch (Exception e) {
                         System.err.println("Error loading card image: " + e.getMessage());
                     }

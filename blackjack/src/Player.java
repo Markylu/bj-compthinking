@@ -48,13 +48,16 @@ public abstract class Player {
 
     public void hit() {
         drawCard();
+        table.repaint();
+        System.out.println("Player " + playerID + " hits");
     }
     public void stand() {
-        // do nothing
+        System.out.println("Player " + playerID + " stands");
     }
  
 
     public int getBet() {
+        System.out.println("Player " + playerID + " bets " + bet);
         return bet;
     }
 
