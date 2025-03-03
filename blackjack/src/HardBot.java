@@ -1,10 +1,5 @@
 import java.util.ArrayList;
-import java.util.Random;
-
 public class HardBot extends Player{
-    Random random = new Random();
-
-
     public static double calculateExpectedValue(ArrayList<Card> deck) {
         double deckValue = 0.0;
         double cardNumber = 0.0;
