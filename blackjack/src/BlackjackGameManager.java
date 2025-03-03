@@ -11,6 +11,7 @@ public class BlackjackGameManager {
         App.window.pack();
         App.window.setLocationRelativeTo(null);
         App.window.setVisible(true); 
+        App.window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         do { 
             System.out.println("Round started");
             game.resetGame();
@@ -30,7 +31,7 @@ public class BlackjackGameManager {
             game.checkWinners();
             table.repaint();
         } while (game.playAgain());
-        System.exit(0);
+        App.window.remove(table);
     }
 
     

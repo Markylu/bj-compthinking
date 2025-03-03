@@ -80,27 +80,27 @@ public class Table extends JPanel {
             switch (player.playerID) {
                 case 0 -> {
                     // dealer
-                    x = 200;
+                    x = 250;
                     y = 20;
                 }
                 case 1 -> {
                     // user
-                    x = 200;
+                    x = 250;
                     y = 30 + cardheight * 4;
                 }
                 case 2 -> {
                     // fiftyfiftybot
-                    x = 200;
+                    x = 250;
                     y = 30 + cardheight;
                 }
                 case 3 -> {
                     // normalbot
-                    x = 200;
+                    x = 250;
                     y = 30 + cardheight * 2;
                 }
                 case 4 -> {
                     // hardbot
-                    x = 200;
+                    x = 250;
                     y = 30 + cardheight * 3;
                 }
                 default -> {

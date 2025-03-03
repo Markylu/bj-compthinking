@@ -22,6 +22,8 @@ public class App {
             window.remove(panel); 
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             BlackjackGameManager blackjackgame = new BlackjackGameManager();
+            window.add(panel);
+            window.setVisible(true);
         }
         });
 
