@@ -11,6 +11,7 @@ public class FiftyFiftyBot extends Player {
     @Override
     public void placeBet(){
         bet = random.nextInt(0,balance);
+        status = "Bet Amount: " + bet;
     }
 
     @Override

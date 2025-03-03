@@ -1,6 +1,4 @@
 
-
-
 public class BlackjackGameManager {
 
     public BlackjackGameManager() {
@@ -13,21 +11,26 @@ public class BlackjackGameManager {
         App.window.pack();
         App.window.setLocationRelativeTo(null);
         App.window.setVisible(true); 
-        game.getBets();
-        table.repaint();
-        Deck.newDeck();
-        Deck.shuffle();
-        game.dealCards();
-        table.repaint();
-        game.hitOrStand();
-        table.repaint();
-        game.checkBlackjack();
-        table.repaint();
-        game.dealerTurn();
-        table.repaint();
-
-
-        System.out.println("Game started");
+        do { 
+            System.out.println("Round started");
+            game.resetGame();
+            Deck.newDeck();
+            Deck.shuffle();
+            table.repaint();
+            game.getBets();
+            table.repaint();
+            game.dealCards();
+            table.repaint();
+            game.hitOrStand();
+            table.repaint();
+            game.checkBlackjack();
+            table.repaint();
+            game.dealerTurn();
+            table.repaint();
+            game.checkWinners();
+            table.repaint();
+        } while (game.playAgain());
+        System.exit(0);
     }
 
     

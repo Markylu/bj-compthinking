@@ -62,6 +62,7 @@ public class User extends Player{
                     bet = betamount;
                     JOptionPane.showMessageDialog(null, "You placed a bet of $" + bet, 
                                                 "Bet Confirmed", JOptionPane.INFORMATION_MESSAGE);
+                    status = "Bet Amount: " + bet;
                     validBet = true;
                 }
             } catch (NumberFormatException e) {

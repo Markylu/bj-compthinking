@@ -18,6 +18,7 @@ public class NormalBot extends Player {
         } else {
             bet = 2 * balance / 10;
         }
+        status = "Bet Amount: " + bet; 
     }
 
     @Override

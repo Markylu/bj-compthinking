@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 public class blackjackGame {
     Player[] players;
@@ -67,6 +68,51 @@ public class blackjackGame {
             if (player.handValue == 21 && player.bet > 0) {
                 player.blackjack();
             }
+        }
+    }
+
+    public void checkWinners(){
+        for (int i = 1; i < players.length; i++) {
+            if (players[i].getBet() > 0) {
+                players[i].calculateHandValue();
+                players[0].calculateHandValue();
+                if (players[i].handValue > 21) {
+                    players[i].bust();
+                    players[i].status = "Bust";
+                } else if (players[i].handValue == 21){
+                    players[i].blackjack();
+                    players[i].status = "Blackjack";
+                }else if (players[0].handValue > 21) {
+                    players[i].winBet();
+                    players[i].status = "Dealer Bust";
+                } else if (players[i].handValue > players[0].handValue) {
+                    players[i].winBet();
+                    players[i].status = "Win";
+                } else if (players[i].handValue < players[0].handValue) {
+                    players[i].loseBet();
+                    players[i].status = "Lose";
+                } else {
+                    players[i].push();
+                    players[i].status = "Push/Tie";
+                }
+            }
+        }
+    }
+
+    public boolean playAgain() {
+        int response = JOptionPane.showConfirmDialog(
+            null, 
+            "Continue to next round?", 
+            "Next Round", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE
+        );
+        return response == JOptionPane.YES_OPTION;
+    }
+
+    public void resetGame() {
+        for (Player player : players) {
+            player.reset();
         }
     }
 

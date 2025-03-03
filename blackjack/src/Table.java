@@ -37,6 +37,7 @@ public class Table extends JPanel {
         drawBet(g);
         drawplayerNames(g);
         drawHandValue(g);
+        drawStatus(g);
     }
 
     private void drawBet(Graphics g) {
@@ -74,8 +75,8 @@ public class Table extends JPanel {
     public void drawCards(Graphics g) {
         // draw the cards for each player
         for (Player player : players) {
-            int x;
-            int y;
+            int x = 0;
+            int y = 0;
             switch (player.playerID) {
                 case 0 -> {
                     // dealer
@@ -104,7 +105,6 @@ public class Table extends JPanel {
                 }
                 default -> {
                     // no player
-                    continue;
                 }
             }
             for (Card card : player.hand) {
@@ -205,6 +205,48 @@ public class Table extends JPanel {
                 }
             }
             g.drawString("Hand Value: " + player.handValue, x, y + 71);
+        }
+    }
+    
+    public void drawStatus(Graphics g) {
+        // draw the status
+        for (Player player : players) {
+            int x;
+            int y;
+            switch (player.playerID) {
+                case 0 -> {
+                    // dealer
+                    x = 20;
+                    y = 30;
+                }
+                case 1 -> {
+                    // user
+                    x = 20;
+                    y = 40 + cardheight * 4;
+                }
+                case 2 -> {
+                    // fiftyfiftybot
+                    x = 20;
+                    y = 40 + cardheight;
+                }
+                case 3 -> {
+                    // normalbot
+                    x = 20;
+                    y = 40 + cardheight * 2;
+                }
+                case 4 -> {
+                    // hardbot
+                    x = 20;
+                    y = 40 + cardheight * 3;
+                }
+                default -> {
+                    // no player
+                    continue;
+                }
+            }
+            if (player != players[0]) {
+                g.drawString(player.status, x, y + 91);
+            }
         }
     }
 }
