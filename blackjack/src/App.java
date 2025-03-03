@@ -21,7 +21,7 @@ public class App {
             public void actionPerformed(ActionEvent e) {
             window.remove(panel); 
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            BlackjackGameManager blackjackgame = new BlackjackGameManager();
+            BlackjackGameManager gameManager = new BlackjackGameManager();
             window.add(panel);
             window.setVisible(true);
         }
@@ -38,7 +38,8 @@ public class App {
         panel.add(quitButton);
 
         window.add(panel);
-        window.setSize(400, 300);
+        window.setSize(400, 100);
+        App.window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
     }

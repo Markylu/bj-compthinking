@@ -11,32 +11,34 @@ public class User extends Player{
 
     @Override
     public void makeDecision() {
-        String[] options = {"Hit", "Stand"};
-        int choice;
-        do { 
-            choice = JOptionPane.showOptionDialog(null, "Your hand value is: " + handValue + "\nDo you want to hit or stand?", 
-                                                        "Make a Decision", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-            App.window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-            if (choice == 0) {
-                hit();
-                calculateHandValue();
-                table.repaint();
-                if (handValue > 21) {
-                    JOptionPane.showMessageDialog(null, "You busted! Your hand value is: " + handValue, 
-                                                    "Busted", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                }
-                if (handValue == 21) {
-                    JOptionPane.showMessageDialog(null, "Blackjack! Your hand value is: " + handValue, 
-                                                    "Blackjack", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                }
-            } else if (choice == 1) {
-                stand();
-                table.repaint();
-            }            
-        } while (choice == 0 && handValue < 21);
-
+        if (bet == 0) {
+        } else {
+            String[] options = {"Hit", "Stand"};
+            int choice;
+            do { 
+                choice = JOptionPane.showOptionDialog(null, "Your hand value is: " + handValue + "\nDo you want to hit or stand?", 
+                                                            "Make a Decision", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                App.window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                if (choice == 0) {
+                    hit();
+                    calculateHandValue();
+                    table.repaint();
+                    if (handValue > 21) {
+                        JOptionPane.showMessageDialog(null, "You busted! Your hand value is: " + handValue, 
+                                                        "Busted", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    }
+                    if (handValue == 21) {
+                        JOptionPane.showMessageDialog(null, "Blackjack! Your hand value is: " + handValue, 
+                                                        "Blackjack", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    }
+                } else if (choice == 1) {
+                    stand();
+                    table.repaint();
+                }            
+            } while (choice == 0 && handValue < 21 && bet != 0);
+        }
     }
 
     @Override
