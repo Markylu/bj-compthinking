@@ -16,25 +16,18 @@ public class Dealer extends Player {
     @Override
     public void makeDecision() {
         hiddenCard.isHidden = false;
-        do {
-            hit();
-            calculateHandValue();
-            table.repaint();
-        } while (handValue < 17);
-        if (handValue > 21) {
-            bust();
-        } else {
-            stand();
-        }
-        calculateHandValue();
-        if (handValue < 17) {
-            hit();
-        } else if (handValue >= 17 && handValue <= 21) {
-            stand();
-        } else {
-            bust();
-        }
-        
+        if (handValue < 17){
+            do {
+                hit();
+                calculateHandValue();
+                table.repaint();
+            } while (handValue < 17);
+            if (handValue > 21) {
+                bust();
+            } else {
+                stand();
+            }
+        } 
     }
 
     @Override
