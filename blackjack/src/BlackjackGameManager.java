@@ -33,7 +33,7 @@ public class BlackjackGameManager {
             table.repaint();
             game.checkWinners();
             table.repaint();
-        } while (game.playAgain() || Deck.deck.size() > 15);
+        } while (game.playAgain() || Deck.deck.size() >= 15);
         App.window.remove(table);
     }
 
