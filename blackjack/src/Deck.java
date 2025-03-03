@@ -18,6 +18,7 @@ public class Deck {
         for (String suit : suits) {
             for (String value : values) {
                 deck.add(new Card(suit, value));
+                deck.add(new Card(suit, value));
             }
         }
         System.out.println("New deck: " + deck + "\n" + "Deck size: " + deck.size());

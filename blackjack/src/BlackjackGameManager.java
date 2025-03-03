@@ -1,4 +1,6 @@
 
+
+
 public class BlackjackGameManager {
 
     public BlackjackGameManager() {
@@ -12,11 +14,12 @@ public class BlackjackGameManager {
         App.window.setLocationRelativeTo(null);
         App.window.setVisible(true); 
         App.window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Deck.newDeck();
+        Deck.shuffle();
         do { 
             System.out.println("Round started");
+            System.out.println("Deck size: " + Deck.deck.size());
             game.resetGame();
-            Deck.newDeck();
-            Deck.shuffle();
             table.repaint();
             game.getBets();
             table.repaint();
@@ -30,7 +33,7 @@ public class BlackjackGameManager {
             table.repaint();
             game.checkWinners();
             table.repaint();
-        } while (game.playAgain());
+        } while (game.playAgain() || Deck.deck.size() > 15);
         App.window.remove(table);
     }
 
