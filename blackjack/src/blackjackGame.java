@@ -100,6 +100,10 @@ public class blackjackGame {
     }
 
     public boolean playAgain() {
+        if (players[1].balance <= 0 || Deck.deck.size() < 10) {
+            JOptionPane.showMessageDialog(null, "Game Over");
+            return false;
+        } else {
         int response = JOptionPane.showConfirmDialog(
             null, 
             "Continue to next round?", 
@@ -108,8 +112,8 @@ public class blackjackGame {
             JOptionPane.QUESTION_MESSAGE
         );
         return response == JOptionPane.YES_OPTION;
+        }
     }
-
     public void resetGame() {
         for (Player player : players) {
             player.reset();

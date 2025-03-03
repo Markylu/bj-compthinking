@@ -21,13 +21,15 @@ public abstract class Player {
     }
 
     public void drawCard(){
-        Card card = Deck.draw();
-        hand.add(card);
-        if (card.value.equals("A")) {
-            aceCount++;
+        if (bet != 0){
+            Card card = Deck.draw();
+            hand.add(card);
+            if (card.value.equals("A")) {
+                aceCount++;
+            }
+            Deck.cardsInPlay.add(card);
+            calculateHandValue();
         }
-        Deck.cardsInPlay.add(card);
-        calculateHandValue();
     }
 
     public void calculateHandValue() {

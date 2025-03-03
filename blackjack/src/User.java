@@ -16,6 +16,7 @@ public class User extends Player{
         do { 
             choice = JOptionPane.showOptionDialog(null, "Your hand value is: " + handValue + "\nDo you want to hit or stand?", 
                                                         "Make a Decision", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            App.window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             if (choice == 0) {
                 hit();
                 calculateHandValue();
@@ -41,8 +42,8 @@ public class User extends Player{
     @Override
     public void placeBet(){
     String input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 
-                                                "Place Your Bet", JOptionPane.QUESTION_MESSAGE);
-
+                                                "Place Your Bet", JOptionPane.YES_OPTION);
+    App.window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     boolean validBet = false;
     while (!validBet) {
         if (input != null) {
