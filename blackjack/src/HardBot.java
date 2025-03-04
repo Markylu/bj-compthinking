@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 public class HardBot extends Player{
     public static double calculateExpectedValue(ArrayList<Card> deck) {
-        double deckValue = 0.0;
-        double cardNumber = 0.0;
+        double deckValue = 680.0;
+        double cardNumber = 104;
         for (Card card : deck) {
             if (card.suit.equals("A") && deckValue + 11 <= 21) {
-                deckValue += 11;
-                cardNumber++;
+                deckValue -= 11;
+                cardNumber--;
                 //If it is an ace it adds 11 to the total deck value
                 //card number total is also increased
             } else {
-                deckValue += Card.getCardValue(card);
+                deckValue -= Card.getCardValue(card);
                 //Everything else gets added to the total
-                cardNumber++;
+                cardNumber--;
             }
         }
         return deckValue/cardNumber;
@@ -36,10 +36,10 @@ public class HardBot extends Player{
         //The logic for the Hardbot for hitting or standing
         //Basically predicts the next cards average value and makes decision based on that
         calculateHandValue();
-        if (handValue<16 && HardBot.calculateExpectedValue(Deck.deck)<6.5385){
+        if (handValue<16 && HardBot.calculateExpectedValue(Deck.deck)>6.5385){
             hit();
         }
-        else if (handValue<17 && HardBot.calculateExpectedValue(Deck.deck)<6){
+        else if (handValue<17 && HardBot.calculateExpectedValue(Deck.deck)>6){
             hit();
         }
         else if(handValue<18 && HardBot.calculateExpectedValue(Deck.deck)<5){
