@@ -36,10 +36,10 @@ public class HardBot extends Player{
         //The logic for the Hardbot for hitting or standing
         //Basically predicts the next cards average value and makes decision based on that
         calculateHandValue();
-        if (handValue<16 && HardBot.calculateExpectedValue(Deck.deck)>6.5385){
+        if (handValue<16 && HardBot.calculateExpectedValue(Deck.deck)<6.5385){
             hit();
         }
-        else if (handValue<17 && HardBot.calculateExpectedValue(Deck.deck)>6){
+        else if (handValue<17 && HardBot.calculateExpectedValue(Deck.deck)<6){
             hit();
         }
         else if(handValue<18 && HardBot.calculateExpectedValue(Deck.deck)<5){
