@@ -54,19 +54,13 @@ public class Table extends JPanel {
         g2d.setRenderingHint(
                 RenderingHints.KEY_FRACTIONALMETRICS,
                 RenderingHints.VALUE_FRACTIONALMETRICS_ON);
-        // set the text color and font
+        // set the text color and font and get the metrics
+        // to calculate the position of the text
         g2d.setColor(new Color(30, 201, 139));
         g2d.setFont(new Font("Lato", Font.BOLD, 25));
-        // draw the score in the bottom center of the screen
-        // https://stackoverflow.com/a/27740330/4655368
         FontMetrics metrics = g2d.getFontMetrics(g2d.getFont());
-        // the text will be contained within this rectangle.
-        // here I've sized it to be the entire bottom row of board tiles
         Rectangle rect = new Rectangle(0, 0, tableWidth, metrics.getHeight());
-        // determine the x coordinate for the text
         int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
-        // determine the y coordinate for the text
-        // (note we add the ascent, as in java 2d 0 is top of the screen)
         int y = rect.y + rect.height;
         // draw the string
         g2d.drawString(text, x, y);
@@ -108,6 +102,7 @@ public class Table extends JPanel {
                 }
             }
             for (Card card : player.hand) {
+                // hidden cards
                 if (card.isHidden) {
                     try {
                         Image img = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
@@ -116,6 +111,8 @@ public class Table extends JPanel {
                         System.err.println("Error loading card image: " + e.getMessage());
                     }
                 } else {
+                    // visible cards
+                    // draw the card image
                     try {
                         Image img = new ImageIcon(getClass().getResource(card.getCard())).getImage();
                         g.drawImage(img, x, y + 31, cardwidth, cardheight, null);
@@ -128,6 +125,7 @@ public class Table extends JPanel {
         }
     }
 
+    // draw the player names
     public void drawplayerNames(Graphics g) {
         // draw the player names
         for (Player player : players) {
@@ -168,6 +166,7 @@ public class Table extends JPanel {
         }
     }
 
+    // draw the hand value
     public void drawHandValue(Graphics g) {
         // draw the hand value
         for (Player player : players) {
@@ -204,7 +203,9 @@ public class Table extends JPanel {
                     continue;
                 }
             }
-            g.drawString("Hand Value: " + player.handValue, x, y + 71);
+            if (player != players[0]) {
+                g.drawString("Hand Value: " + player.handValue, x, y + 71);
+            }
         }
     }
     

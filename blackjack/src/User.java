@@ -8,7 +8,7 @@ public class User extends Player{
         playerID = 1;
     }
 
-
+    // make decision with popup
     @Override
     public void makeDecision() {
         if (bet == 0) {
@@ -41,6 +41,7 @@ public class User extends Player{
         }
     }
 
+    // place bet with popup
     @Override
     public void placeBet(){
     String input = JOptionPane.showInputDialog(null, "Enter your bet amount:", 

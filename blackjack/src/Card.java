@@ -1,7 +1,9 @@
 
+// the card object
 public class Card {
     String suit;
     String value;
+    // hidden card of dealer
     Boolean isHidden = false;
 
     public Card(String suit, String value) {
@@ -15,6 +17,7 @@ public class Card {
         this.isHidden = isHidden;
     }
 
+    // get the path of the card image
     public String getCard(){
         if (isHidden) {
             return "./cards/BACK.png";
@@ -22,6 +25,7 @@ public class Card {
         return "./cards/" + value + "-" + suit + ".png";
     }
 
+    // get the value of the card
     public static int getCardValue(Card card) {
         return switch (card.value) {
             case "A" -> 1;
@@ -34,5 +38,6 @@ public class Card {
     public String toString() {
         return value + "-" + suit;
     }
+
 
 }

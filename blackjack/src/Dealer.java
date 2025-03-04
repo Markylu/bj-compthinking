@@ -7,12 +7,14 @@ public class Dealer extends Player {
         playerID = 0;
     }
 
+    // dealer does not place bets
     @Override
     public void placeBet() {
-        // dealer does not place bets
         System.out.println("Dealer does not place bets");
     }
     
+    // dealer makes decision based on hand value
+    // dealer hits if hand value is less than 17
     @Override
     public void makeDecision() {
         hiddenCard.isHidden = false;
@@ -30,9 +32,10 @@ public class Dealer extends Player {
         } 
     }
 
+    // dealer draws a card
+    // if hand is empty, dealer draws a hidden card
     @Override
     public void drawCard() {
-        // dealer draws a card
         if (hand.isEmpty()){
             hiddenCard = Deck.draw();
             hiddenCard.isHidden = true;
@@ -51,6 +54,8 @@ public class Dealer extends Player {
         
     }
 
+    // dealer reveals hidden card
+    // adds hidden card to hand and updates hand value
     public void revealHiddenCard() {
         if (hiddenCard != null) {
             hiddenCard.isHidden = true;

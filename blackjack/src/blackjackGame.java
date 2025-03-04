@@ -7,9 +7,8 @@ public class blackjackGame {
         
     }
 
-    
+    // initialize game
     public void initializeGame() {
-        // initialize game
         System.out.println("Initializing game");
         players = new Player[5];
         players[0] = new Dealer();
@@ -19,12 +18,14 @@ public class blackjackGame {
         players[4] = new HardBot();
     }
 
+    // give table to players for UI updates
     public void tableToPlayers(Table table) {
         for (Player player : players) {
             player.getTable(table);
         }
     }
     
+    // collects bets from players
     public void getBets() {
         for (Player player : players) {
             player.placeBet();
@@ -32,6 +33,7 @@ public class blackjackGame {
         }
     }
 
+    // deal cards to players
     public void dealCards(){
         for (Player player : players) {
             player.drawCard();
@@ -39,6 +41,7 @@ public class blackjackGame {
         }
     }
 
+    // players make decision
     public void hitOrStand() {
         for (Player player : players) {
             if (!(player instanceof Dealer)) {
@@ -49,19 +52,21 @@ public class blackjackGame {
         }
     }
 
+    // dealer makes decision
     public void dealerTurn(){
         boolean hasPlayer = false;
         for (int i = 1; i < players.length && hasPlayer == false; i++){
             players[i].calculateHandValue();
-			if (players[i].getBet() > 0 && players[i].handValue <= 21 ) {
-				hasPlayer = true;
-			}
-		}
-		if (hasPlayer == true) {
-			players[0].makeDecision();
-		}
+            if (players[i].getBet() > 0 && players[i].handValue <= 21 ) {
+                hasPlayer = true;
+            }
+        }
+        if (hasPlayer == true) {
+            players[0].makeDecision();
+        }
     }
 
+    // check for blackjack
     public void checkBlackjack() {
         for (Player player : players) {
             player.calculateHandValue();
@@ -71,6 +76,7 @@ public class blackjackGame {
         }
     }
 
+    // handles win and overall game end logic
     public void checkWinners(){
         for (int i = 1; i < players.length; i++) {
             if (players[i].getBet() > 0) {
@@ -99,6 +105,7 @@ public class blackjackGame {
         }
     }
 
+    // ask if players want to play again and handles end of game logic
     public boolean playAgain() {
         if (players[1].balance <= 0 || Deck.deck.size() < 10) {
             JOptionPane.showMessageDialog(null, "Game Over");
@@ -114,6 +121,8 @@ public class blackjackGame {
         return response == JOptionPane.YES_OPTION;
         }
     }
+
+    // reset game for another round
     public void resetGame() {
         for (Player player : players) {
             player.reset();
