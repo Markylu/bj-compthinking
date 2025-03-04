@@ -1,7 +1,5 @@
 public class BlackjackGameManager {
 
-    public static boolean isRunning = true;
-
     public BlackjackGameManager() {
         // Initialize the game
         blackjackGame game = new blackjackGame();
@@ -54,7 +52,7 @@ public class BlackjackGameManager {
             // End round logic
             game.checkWinners();
             table.repaint();
-        } while (game.playAgain() && isRunning);
+        } while (game.playAgain());
         
         // Back to start game window
         App.window.remove(table);

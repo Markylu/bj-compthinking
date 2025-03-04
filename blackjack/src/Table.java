@@ -1,11 +1,7 @@
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 
 public class Table extends JPanel {
 
@@ -29,12 +25,6 @@ public class Table extends JPanel {
         setLayout(null);
     }
 
-    @Override
-    public void addNotify() {
-        super.addNotify();
-        setupKeyBindings();
-    }
-
     public void updateTable() {
         // update the table
         repaint();
@@ -47,16 +37,6 @@ public class Table extends JPanel {
         drawBet(g);
         drawplayerNames(g);
         drawHandValue(g);
-    }
-
-    private void setupKeyBindings() {
-        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "quit");
-        getRootPane().getActionMap().put("quit", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BlackjackGameManager.isRunning = false;
-            }
-        });
     }
 
     private void drawBet(Graphics g) {
