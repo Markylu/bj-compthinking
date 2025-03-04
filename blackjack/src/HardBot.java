@@ -7,12 +7,16 @@ public class HardBot extends Player{
             if (card.suit.equals("A") && deckValue + 11 <= 21) {
                 deckValue += 11;
                 cardNumber++;
+                //If it is an ace it adds 11 to the total deck value
+                //card number total is also increased
             } else {
                 deckValue += Card.getCardValue(card);
+                //Everything else gets added to the total
                 cardNumber++;
             }
         }
         return deckValue/cardNumber;
+        //it returns the average value of the remaining cards which is used in makeDecision()
     }
 
     public HardBot(){
@@ -29,6 +33,8 @@ public class HardBot extends Player{
 
     @Override
     public void makeDecision(){
+        //The logic for the Hardbot for hitting or standing
+        //Basically predicts the next cards average value and makes decision based on that
         calculateHandValue();
         if (handValue<16 && HardBot.calculateExpectedValue(Deck.deck)<6.5385){
             hit();

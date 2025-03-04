@@ -1,9 +1,7 @@
 
-import java.util.Random;
 
 public class NormalBot extends Player {
 
-    Random random = new Random();
 
     public NormalBot() {
         super();
@@ -17,6 +15,7 @@ public class NormalBot extends Player {
             bet = balance;
         } else {
             bet = 2 * balance / 10;
+            //places 20% of its money as its bet
         }
         status = "Bet Amount: " + bet; 
     }
@@ -25,8 +24,8 @@ public class NormalBot extends Player {
     public void makeDecision() {
             calculateHandValue();
         if (handValue < 21) {
-            int randomNumberInRange = random.nextInt(2);
-            if (randomNumberInRange == 0) {
+            if (handValue < 17) {
+                //if its hand is less than 17 it will always hit
                 hit();
                 System.out.println("NormalBot hits");
             } else {
